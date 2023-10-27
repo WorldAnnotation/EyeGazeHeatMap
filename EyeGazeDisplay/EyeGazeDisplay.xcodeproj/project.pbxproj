@@ -1,0 +1,622 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A9900EA42AEB7F1D00970719 /* EyeGazeDisplayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9900EA32AEB7F1D00970719 /* EyeGazeDisplayApp.swift */; };
+		A9900EA62AEB7F1D00970719 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9900EA52AEB7F1D00970719 /* ContentView.swift */; };
+		A9900EA82AEB7F2000970719 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9900EA72AEB7F2000970719 /* Assets.xcassets */; };
+		A9900EAC2AEB7F2000970719 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9900EAB2AEB7F2000970719 /* Preview Assets.xcassets */; };
+		A9900EB62AEB7F2000970719 /* EyeGazeDisplayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9900EB52AEB7F2000970719 /* EyeGazeDisplayTests.swift */; };
+		A9900EC02AEB7F2000970719 /* EyeGazeDisplayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9900EBF2AEB7F2000970719 /* EyeGazeDisplayUITests.swift */; };
+		A9900EC22AEB7F2000970719 /* EyeGazeDisplayUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9900EC12AEB7F2000970719 /* EyeGazeDisplayUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A9900EB22AEB7F2000970719 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9900E982AEB7F1D00970719 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A9900E9F2AEB7F1D00970719;
+			remoteInfo = EyeGazeDisplay;
+		};
+		A9900EBC2AEB7F2000970719 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9900E982AEB7F1D00970719 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A9900E9F2AEB7F1D00970719;
+			remoteInfo = EyeGazeDisplay;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A9900EA02AEB7F1D00970719 /* EyeGazeDisplay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EyeGazeDisplay.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9900EA32AEB7F1D00970719 /* EyeGazeDisplayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeGazeDisplayApp.swift; sourceTree = "<group>"; };
+		A9900EA52AEB7F1D00970719 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A9900EA72AEB7F2000970719 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A9900EA92AEB7F2000970719 /* EyeGazeDisplay.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EyeGazeDisplay.entitlements; sourceTree = "<group>"; };
+		A9900EAB2AEB7F2000970719 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A9900EB12AEB7F2000970719 /* EyeGazeDisplayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EyeGazeDisplayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9900EB52AEB7F2000970719 /* EyeGazeDisplayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeGazeDisplayTests.swift; sourceTree = "<group>"; };
+		A9900EBB2AEB7F2000970719 /* EyeGazeDisplayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EyeGazeDisplayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9900EBF2AEB7F2000970719 /* EyeGazeDisplayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeGazeDisplayUITests.swift; sourceTree = "<group>"; };
+		A9900EC12AEB7F2000970719 /* EyeGazeDisplayUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeGazeDisplayUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A9900E9D2AEB7F1D00970719 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9900EAE2AEB7F2000970719 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9900EB82AEB7F2000970719 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A9900E972AEB7F1D00970719 = {
+			isa = PBXGroup;
+			children = (
+				A9900EA22AEB7F1D00970719 /* EyeGazeDisplay */,
+				A9900EB42AEB7F2000970719 /* EyeGazeDisplayTests */,
+				A9900EBE2AEB7F2000970719 /* EyeGazeDisplayUITests */,
+				A9900EA12AEB7F1D00970719 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A9900EA12AEB7F1D00970719 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A9900EA02AEB7F1D00970719 /* EyeGazeDisplay.app */,
+				A9900EB12AEB7F2000970719 /* EyeGazeDisplayTests.xctest */,
+				A9900EBB2AEB7F2000970719 /* EyeGazeDisplayUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A9900EA22AEB7F1D00970719 /* EyeGazeDisplay */ = {
+			isa = PBXGroup;
+			children = (
+				A9900EA32AEB7F1D00970719 /* EyeGazeDisplayApp.swift */,
+				A9900EA52AEB7F1D00970719 /* ContentView.swift */,
+				A9900EA72AEB7F2000970719 /* Assets.xcassets */,
+				A9900EA92AEB7F2000970719 /* EyeGazeDisplay.entitlements */,
+				A9900EAA2AEB7F2000970719 /* Preview Content */,
+			);
+			path = EyeGazeDisplay;
+			sourceTree = "<group>";
+		};
+		A9900EAA2AEB7F2000970719 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				A9900EAB2AEB7F2000970719 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A9900EB42AEB7F2000970719 /* EyeGazeDisplayTests */ = {
+			isa = PBXGroup;
+			children = (
+				A9900EB52AEB7F2000970719 /* EyeGazeDisplayTests.swift */,
+			);
+			path = EyeGazeDisplayTests;
+			sourceTree = "<group>";
+		};
+		A9900EBE2AEB7F2000970719 /* EyeGazeDisplayUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A9900EBF2AEB7F2000970719 /* EyeGazeDisplayUITests.swift */,
+				A9900EC12AEB7F2000970719 /* EyeGazeDisplayUITestsLaunchTests.swift */,
+			);
+			path = EyeGazeDisplayUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A9900E9F2AEB7F1D00970719 /* EyeGazeDisplay */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9900EC52AEB7F2000970719 /* Build configuration list for PBXNativeTarget "EyeGazeDisplay" */;
+			buildPhases = (
+				A9900E9C2AEB7F1D00970719 /* Sources */,
+				A9900E9D2AEB7F1D00970719 /* Frameworks */,
+				A9900E9E2AEB7F1D00970719 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EyeGazeDisplay;
+			productName = EyeGazeDisplay;
+			productReference = A9900EA02AEB7F1D00970719 /* EyeGazeDisplay.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A9900EB02AEB7F2000970719 /* EyeGazeDisplayTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9900EC82AEB7F2000970719 /* Build configuration list for PBXNativeTarget "EyeGazeDisplayTests" */;
+			buildPhases = (
+				A9900EAD2AEB7F2000970719 /* Sources */,
+				A9900EAE2AEB7F2000970719 /* Frameworks */,
+				A9900EAF2AEB7F2000970719 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A9900EB32AEB7F2000970719 /* PBXTargetDependency */,
+			);
+			name = EyeGazeDisplayTests;
+			productName = EyeGazeDisplayTests;
+			productReference = A9900EB12AEB7F2000970719 /* EyeGazeDisplayTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A9900EBA2AEB7F2000970719 /* EyeGazeDisplayUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9900ECB2AEB7F2000970719 /* Build configuration list for PBXNativeTarget "EyeGazeDisplayUITests" */;
+			buildPhases = (
+				A9900EB72AEB7F2000970719 /* Sources */,
+				A9900EB82AEB7F2000970719 /* Frameworks */,
+				A9900EB92AEB7F2000970719 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A9900EBD2AEB7F2000970719 /* PBXTargetDependency */,
+			);
+			name = EyeGazeDisplayUITests;
+			productName = EyeGazeDisplayUITests;
+			productReference = A9900EBB2AEB7F2000970719 /* EyeGazeDisplayUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A9900E982AEB7F1D00970719 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					A9900E9F2AEB7F1D00970719 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					A9900EB02AEB7F2000970719 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = A9900E9F2AEB7F1D00970719;
+					};
+					A9900EBA2AEB7F2000970719 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = A9900E9F2AEB7F1D00970719;
+					};
+				};
+			};
+			buildConfigurationList = A9900E9B2AEB7F1D00970719 /* Build configuration list for PBXProject "EyeGazeDisplay" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A9900E972AEB7F1D00970719;
+			productRefGroup = A9900EA12AEB7F1D00970719 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A9900E9F2AEB7F1D00970719 /* EyeGazeDisplay */,
+				A9900EB02AEB7F2000970719 /* EyeGazeDisplayTests */,
+				A9900EBA2AEB7F2000970719 /* EyeGazeDisplayUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A9900E9E2AEB7F1D00970719 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9900EAC2AEB7F2000970719 /* Preview Assets.xcassets in Resources */,
+				A9900EA82AEB7F2000970719 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9900EAF2AEB7F2000970719 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9900EB92AEB7F2000970719 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A9900E9C2AEB7F1D00970719 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9900EA62AEB7F1D00970719 /* ContentView.swift in Sources */,
+				A9900EA42AEB7F1D00970719 /* EyeGazeDisplayApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9900EAD2AEB7F2000970719 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9900EB62AEB7F2000970719 /* EyeGazeDisplayTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9900EB72AEB7F2000970719 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9900EC22AEB7F2000970719 /* EyeGazeDisplayUITestsLaunchTests.swift in Sources */,
+				A9900EC02AEB7F2000970719 /* EyeGazeDisplayUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A9900EB32AEB7F2000970719 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A9900E9F2AEB7F1D00970719 /* EyeGazeDisplay */;
+			targetProxy = A9900EB22AEB7F2000970719 /* PBXContainerItemProxy */;
+		};
+		A9900EBD2AEB7F2000970719 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A9900E9F2AEB7F1D00970719 /* EyeGazeDisplay */;
+			targetProxy = A9900EBC2AEB7F2000970719 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A9900EC32AEB7F2000970719 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A9900EC42AEB7F2000970719 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		A9900EC62AEB7F2000970719 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = EyeGazeDisplay/EyeGazeDisplay.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"EyeGazeDisplay/Preview Content\"";
+				DEVELOPMENT_TEAM = 3J329298Z2;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = KinjiKawaguchi.EyeGazeDisplay;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A9900EC72AEB7F2000970719 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = EyeGazeDisplay/EyeGazeDisplay.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"EyeGazeDisplay/Preview Content\"";
+				DEVELOPMENT_TEAM = 3J329298Z2;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = KinjiKawaguchi.EyeGazeDisplay;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A9900EC92AEB7F2000970719 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3J329298Z2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = KinjiKawaguchi.EyeGazeDisplayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EyeGazeDisplay.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EyeGazeDisplay";
+			};
+			name = Debug;
+		};
+		A9900ECA2AEB7F2000970719 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3J329298Z2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = KinjiKawaguchi.EyeGazeDisplayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EyeGazeDisplay.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EyeGazeDisplay";
+			};
+			name = Release;
+		};
+		A9900ECC2AEB7F2000970719 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3J329298Z2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = KinjiKawaguchi.EyeGazeDisplayUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = EyeGazeDisplay;
+			};
+			name = Debug;
+		};
+		A9900ECD2AEB7F2000970719 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3J329298Z2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = KinjiKawaguchi.EyeGazeDisplayUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = EyeGazeDisplay;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A9900E9B2AEB7F1D00970719 /* Build configuration list for PBXProject "EyeGazeDisplay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9900EC32AEB7F2000970719 /* Debug */,
+				A9900EC42AEB7F2000970719 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9900EC52AEB7F2000970719 /* Build configuration list for PBXNativeTarget "EyeGazeDisplay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9900EC62AEB7F2000970719 /* Debug */,
+				A9900EC72AEB7F2000970719 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9900EC82AEB7F2000970719 /* Build configuration list for PBXNativeTarget "EyeGazeDisplayTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9900EC92AEB7F2000970719 /* Debug */,
+				A9900ECA2AEB7F2000970719 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9900ECB2AEB7F2000970719 /* Build configuration list for PBXNativeTarget "EyeGazeDisplayUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9900ECC2AEB7F2000970719 /* Debug */,
+				A9900ECD2AEB7F2000970719 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A9900E982AEB7F1D00970719 /* Project object */;
+}
