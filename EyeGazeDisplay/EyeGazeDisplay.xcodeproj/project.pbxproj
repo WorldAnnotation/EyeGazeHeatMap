@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A955E8642AEB9F2800BC59A6 /* HeatMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A955E8632AEB9F2800BC59A6 /* HeatMapView.swift */; };
+		A955E8662AEB9F3B00BC59A6 /* HeatMapVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A955E8652AEB9F3B00BC59A6 /* HeatMapVector.swift */; };
+		A955E8692AEB9F7600BC59A6 /* TextBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = A955E8682AEB9F7600BC59A6 /* TextBook.swift */; };
+		A955E86C2AEBA03500BC59A6 /* CampusServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A955E86B2AEBA03500BC59A6 /* CampusServerManager.swift */; };
+		A955E86E2AEBA05100BC59A6 /* HeatMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A955E86D2AEBA05100BC59A6 /* HeatMapViewModel.swift */; };
 		A9900EA42AEB7F1D00970719 /* EyeGazeDisplayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9900EA32AEB7F1D00970719 /* EyeGazeDisplayApp.swift */; };
-		A9900EA62AEB7F1D00970719 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9900EA52AEB7F1D00970719 /* ContentView.swift */; };
 		A9900EA82AEB7F2000970719 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9900EA72AEB7F2000970719 /* Assets.xcassets */; };
 		A9900EAC2AEB7F2000970719 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9900EAB2AEB7F2000970719 /* Preview Assets.xcassets */; };
 		A9900EB62AEB7F2000970719 /* EyeGazeDisplayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9900EB52AEB7F2000970719 /* EyeGazeDisplayTests.swift */; };
@@ -34,9 +38,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A955E8632AEB9F2800BC59A6 /* HeatMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatMapView.swift; sourceTree = "<group>"; };
+		A955E8652AEB9F3B00BC59A6 /* HeatMapVector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatMapVector.swift; sourceTree = "<group>"; };
+		A955E8682AEB9F7600BC59A6 /* TextBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBook.swift; sourceTree = "<group>"; };
+		A955E86B2AEBA03500BC59A6 /* CampusServerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusServerManager.swift; sourceTree = "<group>"; };
+		A955E86D2AEBA05100BC59A6 /* HeatMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatMapViewModel.swift; sourceTree = "<group>"; };
 		A9900EA02AEB7F1D00970719 /* EyeGazeDisplay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EyeGazeDisplay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9900EA32AEB7F1D00970719 /* EyeGazeDisplayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeGazeDisplayApp.swift; sourceTree = "<group>"; };
-		A9900EA52AEB7F1D00970719 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A9900EA72AEB7F2000970719 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9900EA92AEB7F2000970719 /* EyeGazeDisplay.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EyeGazeDisplay.entitlements; sourceTree = "<group>"; };
 		A9900EAB2AEB7F2000970719 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -72,6 +80,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A955E85C2AEB9DC200BC59A6 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				A955E86A2AEB9FEC00BC59A6 /* Module */,
+				A955E85D2AEB9DC200BC59A6 /* ViewModel */,
+				A955E85F2AEB9DC200BC59A6 /* Model */,
+				A955E8602AEB9DC200BC59A6 /* View */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		A955E85D2AEB9DC200BC59A6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A955E86D2AEBA05100BC59A6 /* HeatMapViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A955E85F2AEB9DC200BC59A6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A955E8652AEB9F3B00BC59A6 /* HeatMapVector.swift */,
+				A955E8682AEB9F7600BC59A6 /* TextBook.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A955E8602AEB9DC200BC59A6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A955E8632AEB9F2800BC59A6 /* HeatMapView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A955E86A2AEB9FEC00BC59A6 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				A955E86B2AEBA03500BC59A6 /* CampusServerManager.swift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
 		A9900E972AEB7F1D00970719 = {
 			isa = PBXGroup;
 			children = (
@@ -95,8 +147,8 @@
 		A9900EA22AEB7F1D00970719 /* EyeGazeDisplay */ = {
 			isa = PBXGroup;
 			children = (
+				A955E85C2AEB9DC200BC59A6 /* src */,
 				A9900EA32AEB7F1D00970719 /* EyeGazeDisplayApp.swift */,
-				A9900EA52AEB7F1D00970719 /* ContentView.swift */,
 				A9900EA72AEB7F2000970719 /* Assets.xcassets */,
 				A9900EA92AEB7F2000970719 /* EyeGazeDisplay.entitlements */,
 				A9900EAA2AEB7F2000970719 /* Preview Content */,
@@ -259,8 +311,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9900EA62AEB7F1D00970719 /* ContentView.swift in Sources */,
 				A9900EA42AEB7F1D00970719 /* EyeGazeDisplayApp.swift in Sources */,
+				A955E8692AEB9F7600BC59A6 /* TextBook.swift in Sources */,
+				A955E86C2AEBA03500BC59A6 /* CampusServerManager.swift in Sources */,
+				A955E86E2AEBA05100BC59A6 /* HeatMapViewModel.swift in Sources */,
+				A955E8642AEB9F2800BC59A6 /* HeatMapView.swift in Sources */,
+				A955E8662AEB9F3B00BC59A6 /* HeatMapVector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
