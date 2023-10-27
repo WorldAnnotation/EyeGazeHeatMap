@@ -11,7 +11,7 @@ import SwiftUI
 struct EyeGazeDisplayApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HeatMapView()
         }
     }
 }
