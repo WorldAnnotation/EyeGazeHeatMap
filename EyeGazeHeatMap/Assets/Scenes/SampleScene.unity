@@ -605,6 +605,7 @@ GameObject:
   - component: {fileID: 1867748823}
   - component: {fileID: 1867748822}
   - component: {fileID: 1867748821}
+  - component: {fileID: 1867748824}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -761,3 +762,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoConstraintSelection: 1
   selectedConstraints: []
+--- !u!114 &1867748824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867748816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dda585645b750464aa071722e8cabbbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
