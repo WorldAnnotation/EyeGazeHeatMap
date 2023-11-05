@@ -136,7 +136,9 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 0.1.0
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 2778409415367617108, guid: c5c3e9a63ddfee44fb667c76048125a5, type: 2}
+  - {fileID: -4881888016412062057, guid: ca8795573f145e944909781f10eb6c5b, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -821,11 +823,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: com.unity.template-starter-kit
   metroPackageVersion: 1.0.0.0
-  metroCertificatePath: 
+  metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: DefaultCompany
+  metroCertificateIssuer: DefaultCompany
+  metroCertificateNotAfter: 0037be44b02edb01
   metroApplicationDescription: com.unity.template-starter-kit
   wsaImages: {}
   metroTileShortName: EyeGazeHeatMap
