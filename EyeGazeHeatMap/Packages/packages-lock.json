@@ -44,6 +44,14 @@
         "com.unity.textmeshpro": "2.1.4"
       }
     },
+    "com.ptc.vuforia.engine": {
+      "version": "file:com.ptc.vuforia.engine-10.18.4.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0"
+      }
+    },
     "com.unity.burst": {
       "version": "1.8.4",
       "depth": 1,

@@ -5,3 +5,5 @@ C:/Users/81806/EyeGazeHeatMap/EyeGazeHeatMap/Library/PackageCache/com.unity.burs
 C:/Users/81806/EyeGazeHeatMap/EyeGazeHeatMap/Library/PackageCache/com.unity.burst@1.8.4/.Runtime/libburst-llvm-14.so filter=lfs diff=lfs merge=lfs -text
 C:/Users/81806/EyeGazeHeatMap/EyeGazeHeatMap/Library/PackageCache/com.unity.burst@1.8.4/.Runtime/hostmac/dsymutil filter=lfs diff=lfs merge=lfs -text
 C:/Users/81806/EyeGazeHeatMap/EyeGazeHeatMap/Packages/MixedReality/com.microsoft.mixedreality.toolkit.examples-2.8.3.tgz filter=lfs diff=lfs merge=lfs -text
+EyeGazeHeatMap/Assets/Editor/Migration/com.ptc.vuforia.engine-10.18.4.tgz filter=lfs diff=lfs merge=lfs -text
+Packages/com.ptc.vuforia.engine-10.18.4.tgz filter=lfs diff=lfs merge=lfs -text

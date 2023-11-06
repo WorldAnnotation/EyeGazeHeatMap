@@ -1,0 +1,4 @@
+Assets/Editor/Migration/com.ptc.vuforia.engine-10.18.4.tgz filter=lfs diff=lfs merge=lfs -text
+EyeGazeHeatMap/Packages/com.ptc.vuforia.engine-10.18.4.tgz filter=lfs diff=lfs merge=lfs -text
+C:/Users/81806/EyeGazeHeatMap/EyeGazeHeatMap/Assets/Editor/Migration filter=lfs diff=lfs merge=lfs -text
+EyeGazeHeatMap/Assets/Editor/Migration/com.ptc.vuforia.engine-10.18.4.tgz filter=lfs diff=lfs merge=lfs -text
