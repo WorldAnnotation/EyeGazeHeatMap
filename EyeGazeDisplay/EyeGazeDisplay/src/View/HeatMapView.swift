@@ -8,11 +8,34 @@
 import SwiftUI
 
 struct HeatMapView: View {
+    @ObservedObject var viewModel: HeatMapViewModel
+    var a4Image: Image
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            // 画像を表示
+            a4Image
+                .resizable()
+                .scaledToFit()
+                .frame(width: (297 * 4.3), height: (210 * 4.3))
+            
+            // ヒートマップを表示
+            VStack(spacing: 0) {
+                ForEach(0..<viewModel.heatmap.rows, id: \.self) {
+                    row in
+                    HStack(spacing: 0) {
+                        ForEach(0..<viewModel.heatmap.columns, id: \.self) {
+                            column in
+                            Rectangle()
+                                .fill(viewModel.colorForValue(viewModel.heatmap.data[row][column]))
+                                .frame(width: 12, height: 12)
+                                .onTapGesture{
+                                    print("Tapped on cell(\(row), \(column)")
+                                }
+                        }
+                    }
+                }
+            }
+        }
     }
-}
-
-#Preview {
-    HeatMapView()
 }
