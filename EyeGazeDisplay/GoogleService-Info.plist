@@ -26,5 +26,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:801248872465:ios:6d298949c7cde6e7adc9b0</string>
+	<key>DATABASE_URL</key>
+	<string>https://eyegazeheatmap-default-rtdb.asia-southeast1.firebasedatabase.app</string>
 </dict>
 </plist>
