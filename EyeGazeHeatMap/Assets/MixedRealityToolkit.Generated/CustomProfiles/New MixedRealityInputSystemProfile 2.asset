@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b71cb900fa9dec5488df2deb180db58f, type: 3}
-  m_Name: New MixedRealityInputSystemProfile
+  m_Name: New MixedRealityInputSystemProfile 2
   m_EditorClassIdentifier: 
   isCustomProfile: 1
   dataProviderConfigurations:
@@ -33,8 +33,8 @@ MonoBehaviour:
       reference: Microsoft.MixedReality.Toolkit.Input.InputSimulationService, Microsoft.MixedReality.Toolkit.Services.InputSimulation
     componentName: Input Simulation Service
     priority: 0
-    runtimePlatform: 217
-    deviceManagerProfile: {fileID: 11400000, guid: e8c61ff63511aa8459d60077680251ff,
+    runtimePlatform: 208
+    deviceManagerProfile: {fileID: 11400000, guid: 41478039094d47641bf4e09c20e61a5a,
       type: 2}
   - componentType:
       reference: Microsoft.MixedReality.Toolkit.Input.HandJointService, Microsoft.MixedReality.Toolkit
@@ -55,15 +55,7 @@ MonoBehaviour:
     componentName: XRSDK Windows Mixed Reality Eye Gaze Provider
     priority: 0
     runtimePlatform: 8
-    deviceManagerProfile: {fileID: 11400000, guid: 909fe12ad4cb62c43891a436c6cdd848,
-      type: 2}
-  - componentType:
-      reference: Microsoft.MixedReality.Toolkit.XRSDK.OpenXR.OpenXREyeGazeDataProvider,
-        Microsoft.MixedReality.Toolkit.Providers.OpenXR
-    componentName: OpenXR XRSDK Eye Gaze Provider
-    priority: 0
-    runtimePlatform: -1
-    deviceManagerProfile: {fileID: 11400000, guid: 20ff189689ee9c74fb49b79f58043c68,
+    deviceManagerProfile: {fileID: 11400000, guid: 2d87dd11b18f700449c9dab320d19b99,
       type: 2}
   focusProviderType:
     reference: Microsoft.MixedReality.Toolkit.Input.FocusProvider, Microsoft.MixedReality.Toolkit.Services.InputSystem
@@ -76,7 +68,7 @@ MonoBehaviour:
     type: 2}
   inputActionRulesProfile: {fileID: 11400000, guid: 03945385d89102f41855bc8f5116b199,
     type: 2}
-  pointerProfile: {fileID: 11400000, guid: b7bf21ec9be7f4b4399921303ec1c829, type: 2}
+  pointerProfile: {fileID: 11400000, guid: 48aa63a9725047b28d4137fd0834bc31, type: 2}
   gesturesProfile: {fileID: 11400000, guid: bd7829a9b29409045a745b5a18299291, type: 2}
   speechCommandsProfile: {fileID: 11400000, guid: e8d0393e66374dae9646851a57dc6bc1,
     type: 2}
@@ -85,5 +77,5 @@ MonoBehaviour:
     type: 2}
   controllerVisualizationProfile: {fileID: 11400000, guid: d9ee3d709133f504a8d76410d0135d17,
     type: 2}
-  handTrackingProfile: {fileID: 11400000, guid: 17e0c4c1c50ff1a40a557f2e05dd5667,
+  handTrackingProfile: {fileID: 11400000, guid: 7f1e3cd673742f94ca860ac7ae733024,
     type: 2}
