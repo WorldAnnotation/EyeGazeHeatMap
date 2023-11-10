@@ -1,0 +1,43 @@
+using UnityEngine;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Text;
+using System;
+
+public class FirebaseTest : MonoBehaviour
+{
+    private async Task<HttpResponseMessage> PutDataAsync(string jsonData)
+    {
+        StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+        // Firebase URLに置き換えてください
+        var firebasePath = "https://eyegazeheatmap-default-rtdb.asia-southeast1.firebasedatabase.app/images/image1.json";
+
+        using (HttpClient httpClient = new HttpClient())
+        {
+            httpClient.Timeout = TimeSpan.FromSeconds(60);
+            HttpResponseMessage response = await httpClient.PutAsync(firebasePath, content);
+            response.EnsureSuccessStatusCode();
+            return response;
+        }
+    }
+
+    void Start()
+    {
+        // PUTするJSONデータ
+        string jsonData = "{ \"first\": \"Jack\", \"last\": \"Sparrow\" }";
+
+        PutDataAsync(jsonData).ContinueWith(task =>
+        {
+            if (task.Exception != null)
+            {
+                Debug.LogError("Error posting data: " + task.Exception);
+            }
+            else
+            {
+                Debug.Log("Response received: " + task.Result);
+            }
+        });
+    }
+}
