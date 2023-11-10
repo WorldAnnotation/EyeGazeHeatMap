@@ -70,3 +70,5 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+!EyeGazeHeatMap/Library/PackageCache/com.microsoft.mixedreality.toolkit.foundation@f2323a9b7aec/SDK/Features/Input/Handlers/EyeTrackingTarget.cs

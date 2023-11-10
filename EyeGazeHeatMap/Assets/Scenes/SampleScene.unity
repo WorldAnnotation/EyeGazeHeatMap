@@ -211,7 +211,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1730087807}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
@@ -616,8 +616,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1867748820}
   - {fileID: 330585546}
+  - {fileID: 1867748820}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -904,7 +904,7 @@ PrefabInstance:
     - target: {fileID: 1101257152492956253, guid: 1680a4c0d6879a84fa8367b264ecc9e8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1101257152492956253, guid: 1680a4c0d6879a84fa8367b264ecc9e8,
         type: 3}
@@ -939,27 +939,27 @@ PrefabInstance:
     - target: {fileID: 1101257152492956253, guid: 1680a4c0d6879a84fa8367b264ecc9e8,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 1101257152492956253, guid: 1680a4c0d6879a84fa8367b264ecc9e8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 1101257152492956253, guid: 1680a4c0d6879a84fa8367b264ecc9e8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1101257152492956253, guid: 1680a4c0d6879a84fa8367b264ecc9e8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1101257152492956253, guid: 1680a4c0d6879a84fa8367b264ecc9e8,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 1101257152492956253, guid: 1680a4c0d6879a84fa8367b264ecc9e8,
         type: 3}
