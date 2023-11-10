@@ -11,6 +11,13 @@ using UnityEngine.Events;
 using UnityEngine.Serialization;
 using Newtonsoft.Json;
 
+using System.Threading;
+using System.Net.Http;
+using System.IO;
+using System;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+
 using Microsoft.MixedReality.Toolkit.Input;
 
 namespace Microsoft.MixedReality.Toolkit.Input
@@ -22,6 +29,12 @@ namespace Microsoft.MixedReality.Toolkit.Input
     [AddComponentMenu("Scripts/MRTK/SDK/EyeTrackingTarget")]
     public class EyeTrackingTarget : InputSystemGlobalHandlerListener, IMixedRealityPointerHandler, IMixedRealitySpeechHandler
     {
+        CancellationTokenSource cancellationTokenSource;
+        HttpResponseMessage httpResponse;
+        StreamReader contentStreamReader;
+        Stream contentStream;
+        Task taskFirebase;
+        
         [Tooltip("Select action that are specific to when the target is looked at.")]
         [SerializeField]
         private MixedRealityInputAction selectAction = MixedRealityInputAction.None;
@@ -276,7 +289,6 @@ namespace Microsoft.MixedReality.Toolkit.Input
 
                     // Generate the heatmap data.
                     int[,] heatMapData = GenerateHeatMap(1, 1, 0, 0); // Placeholder for heatmap generation logic.
-
                     // Post the heatmap data to Firebase.s
                     PutFirebase(heatMapData);
 
@@ -284,6 +296,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
                 }
             }
         }
+
 
         private int[,] GenerateHeatMap(double x_max, double y_max, double x_min, double y_min)
         {
@@ -311,82 +324,63 @@ namespace Microsoft.MixedReality.Toolkit.Input
             return heatmap;
         }
 
-
         private void PutFirebase(int[,] heatMapData)
         {
             string json = JsonConvert.SerializeObject(heatMapData);
             Debug.Log(json);
-            PutDataAsync(json).ContinueWith(task =>
-            {
-                if (task.IsFaulted)
-                {
-                    Debug.LogError("Failed to post data: " + task.Exception);
-                }
-                else
-                {
-                    Debug.Log("Data posted successfully!");
-                }
-            });
+            GetAndProcessFirebaseHttpResponse(json);
         }
 
-        // Serialize the heatmap data to JSON.
-        // string jsonHeatMap = JsonUtility.ToJson(heatMapData);
-        // Dictionary<string, object> data = new Dictionary<string, object>
-        // {
-        //     { "heatmap", jsonHeatMap }
-        // };
+        public void GetAndProcessFirebaseHttpResponse(string json)
+        {
+            taskFirebase = new Task(async () =>
+            {
+                cancellationTokenSource = new CancellationTokenSource();
 
+                try
+                {
+                    // PutDataAsyncメソッドを一度だけ呼び出し
+                    httpResponse = await PutDataAsync(json);
+                    
+                    // 応答の処理（ログ出力など）
+                    if (httpResponse.IsSuccessStatusCode)
+                    {
+                        Debug.Log("Data successfully updated.");
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError("Error during HTTP request: " + e.Message);
+                }
+            });
 
-        // Send the data to Firebase.
-        // PutDataAsync(data).ContinueWith(task =>
-        // {
-        //     if (task.IsFaulted)
-        //     {
-        //         Debug.LogError("Failed to post data: " + task.Exception);
-        //     }
-        //     else
-        //     {
-        //         Debug.Log("Data posted successfully!");
-        //     }
-        // });
-        // }
-
-
-        // private async Task<HttpResponseMessage> PutDataAsync(Dictionary<string, object> data)
-        // {
-        //     string json = JsonUtility.ToJson(data);
-
-        //     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-
-        //     var firebasePath = "https://eyegazeheatmap-default-rtdb.asia-southeast1.firebasedatabase.app/images/image1.json";
-
-        //     using (HttpClient httpClient = new HttpClient())
-        //     {
-        //         httpClient.Timeout = TimeSpan.FromSeconds(60);
-        //         HttpResponseMessage response = await httpClient.PutAsync(firebasePath, content);
-        //         response.EnsureSuccessStatusCode();
-        //         return response;
-        //     }
-        // }
+            taskFirebase.Start();
+        }
 
         private async Task<HttpResponseMessage> PutDataAsync(string json)
         {
-
-            StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            httpClientHandler.AllowAutoRedirect = true;
 
             var firebasePath = "https://eyegazeheatmap-default-rtdb.asia-southeast1.firebasedatabase.app/images/image1.json";
 
-            using (HttpClient httpClient = new HttpClient())
+            using (HttpClient httpClient = new HttpClient(httpClientHandler, true))
             {
+                httpClient.BaseAddress = new Uri(firebasePath);
                 httpClient.Timeout = TimeSpan.FromSeconds(60);
-                HttpResponseMessage response = await httpClient.PutAsync(firebasePath, content);
+
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, firebasePath)
+                {
+                    Content = content
+                };
+
+                HttpResponseMessage response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
                 response.EnsureSuccessStatusCode();
+
                 return response;
             }
         }
-
-
-
 
         protected override void OnDisable()
         {
@@ -458,7 +452,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
             OnLookAway?.Invoke();
         }
 
-        #endregion
+#endregion
 
         #region IMixedRealityPointerHandler
         void IMixedRealityPointerHandler.OnPointerUp(MixedRealityPointerEventData eventData) { }
