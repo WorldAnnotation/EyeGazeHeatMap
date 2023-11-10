@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.MixedReality.EyeTracking</id>
+    <version>1.0.2</version>
+    <authors>Microsoft</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="file">LICENSE.txt</license>
+    <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
+    <projectUrl>https://aka.ms/MR-EET</projectUrl>
+    <iconUrl>https://www.nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
+    <description>SDK for extended EyeTracking features on Windows Mixed Reality devices.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <language>en-US</language>
+    <tags>MixedReality EyeTracking</tags>
+    <references>
+      <group targetFramework="UAP10.0.18362">
+        <reference file="Microsoft.MixedReality.EyeTracking.DotNet.dll" />
+      </group>
+    </references>
+  </metadata>
+</package>
