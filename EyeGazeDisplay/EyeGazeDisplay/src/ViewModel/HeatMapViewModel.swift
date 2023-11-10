@@ -43,38 +43,16 @@ class HeatMapViewModel: ObservableObject {
     
     // この関数をあなたのFirebaseからのデータフェッチが完了した時点で呼び出します。
     private func generateHeatMap(with fetchedData: Any) {
-        if let formattedData = formatData(with: fetchedData),
-           let heatMapArray = formattedData["heat_map"] as? [[Double]] {
-            // We already have rows and columns information within the heatMapArray.
+        if let heatMapArray = fetchedData as? [[Double]] {
             let rows = heatMapArray.count
             let columns = heatMapArray.first?.count ?? 0
             let heatmapData = HeatmapData(rows: rows, columns: columns, data: heatMapArray)
             
             // Assigning the fetched and formatted heatmap data to the @Published heatMap property
             heatMap = heatmapData
-        }
-    }
-    
-    private func formatData(with fetchedData: Any) -> [String: Any]? {
-        // まずは、受け取ったデータをNSDictionary型にキャストします。
-        if let dictionary = fetchedData as? [String: Any] {
-            // キャストが成功したら、heat_mapとタイムスタンプの値を取り出します。
-            if let heatMapArray = dictionary["heat_map"] as? [[Double]], // heat_mapは2次元配列としてキャスト
-               let lastUpdate = dictionary["last_update"] as? String, // タイムスタンプはStringとしてキャスト
-               let startTime = dictionary["start_time"] as? String {
-                // 成功した場合、処理を実行します。
-                print("Heat Map Array: \(heatMapArray)")
-                print("Last Update: \(lastUpdate)")
-                print("Start Time: \(startTime)")
-                
-                return dictionary;
-            } else {
-                print("Data casting failed")
-            }
         } else {
             print("Invalid data structure")
         }
-        return nil;
     }
 
     // オブジェクトが解放されたときにタイマーを停止

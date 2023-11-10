@@ -17,7 +17,7 @@ struct HeatMapView: View {
             a4Image
                 .resizable()
                 .scaledToFit()
-                .frame(width: (420 * 4.3), height: (297 * 4.3))
+                .frame(width: (420 * 2.116), height: (297 * 2.125))
             
             // Display the heatmap
             if let heatMapData = viewModel.heatMap {
