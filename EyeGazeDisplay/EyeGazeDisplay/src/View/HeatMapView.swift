@@ -13,13 +13,11 @@ struct HeatMapView: View {
     
     var body: some View {
         ZStack {
-            // Display the image
             a4Image
                 .resizable()
                 .scaledToFit()
                 .frame(width: (420 * 2.116), height: (297 * 2.125))
             
-            // Display the heatmap
             if let heatMapData = viewModel.heatMap {
                 VStack(spacing: 0) {
                     ForEach(0..<heatMapData.rows, id: \.self) { row in
