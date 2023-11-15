@@ -37,5 +37,6 @@ struct HeatMapView: View {
                 }
             }
         }
+        Spacer()
     }
 }

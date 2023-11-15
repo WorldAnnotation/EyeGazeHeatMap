@@ -17,7 +17,7 @@ struct EyeGazeDisplayApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HeatMapView() // "Textbook"はAssets.xcassetsに追加したイメージの名前になります
+            StartView() // "Textbook"はAssets.xcassetsに追加したイメージの名前になります
         }
     }
 }
