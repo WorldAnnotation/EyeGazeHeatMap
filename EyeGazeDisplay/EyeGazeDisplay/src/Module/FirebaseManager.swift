@@ -1,34 +1,31 @@
-//
-//  FirebaseManager.swift
-//  EyeGazeDisplay
-//
-//  Created by 河口欣仁 on 2023/10/27.
-//
-
 import Foundation
 import FirebaseDatabase
 
 class DatabaseManager {
     
     private var dbRef: DatabaseReference
+    private var valueHandle: DatabaseHandle?
+    private var lastFetchTime: Date?
 
     init() {
-        // DatabaseReferenceのインスタンスを取得
         self.dbRef = Database.database().reference()
+        self.lastFetchTime = nil
     }
-    
-    // 指定したパスのデータを取得するメソッド
-    func fetchData(from path: String, completion: @escaping (Result<Any, Error>) -> Void) {
-        dbRef.child(path).observe(.value, with: { snapshot in
+
+    func startObservingData(from path: String, completion: @escaping (Result<Any, Error>) -> Void) {
+        valueHandle = dbRef.child(path).observe(.value, with: { snapshot in
+            if let lastFetch = self.lastFetchTime, Date().timeIntervalSince(lastFetch) < 1 {
+                return
+            }
+                        
             if let value = snapshot.value {
-                // 成功した場合はvalueを返す
+                print("Fetched data \(Date())")
+                self.lastFetchTime = Date()
                 completion(.success(value))
             } else {
-                // snapshotが存在しない場合はエラーを返す
                 completion(.failure(NSError(domain: "Firebase", code: 0, userInfo: [NSLocalizedDescriptionKey: "No data available at the given path."])))
             }
         }) { error in
-            // エラーが発生した場合はエラーを返す
             completion(.failure(error))
         }
     }
@@ -44,6 +41,10 @@ class DatabaseManager {
             completion(.success(keys))
         }) { error in
             completion(.failure(error))
+
+    func stopObservingData() {
+        if let handle = valueHandle {
+            dbRef.removeObserver(withHandle: handle)
         }
     }
 }

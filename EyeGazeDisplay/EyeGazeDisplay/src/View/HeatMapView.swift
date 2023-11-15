@@ -14,7 +14,6 @@ struct HeatMapView: View {
 
     var body: some View {
         ZStack {
-            // Display the image
             a4Image
                 .resizable()
                 .scaledToFit()
