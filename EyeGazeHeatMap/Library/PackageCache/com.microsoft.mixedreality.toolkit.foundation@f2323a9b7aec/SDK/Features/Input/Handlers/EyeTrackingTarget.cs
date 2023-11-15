@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 using System.Threading;
 using System.Net.Http;
@@ -257,13 +258,31 @@ namespace Microsoft.MixedReality.Toolkit.Input
                 // Debug.Log("x = " + (localPoint.x + float.Parse("0.5")));
                 // Debug.Log("y = " + localPoint.y);
                 // Debug.Log("z = " + (localPoint.z + float.Parse("0.5")));
+                if (UnityEngine.Input.anyKeyDown)
+                {
+                    if (UnityEngine.Input.inputString == "r")
+                    {
+                        isRecording = !isRecording;
+                        Debug.Log("Toggled!!!!!");
 
+                        // レコーディング開始時にrecordingJsonを初期化
+                        if (isRecording)
+                        {
+                            recordingJson = new JObject();
+                        }
+
+                        // TODO: レコーディングを示すオブジェクトを表示
+                    }
+                }
                 PostHeatMapHandler(localPoint);
             }
         }
 
         static private int frameCount = 0;
         static private List<Vector2> localPointDataList = new List<Vector2>();
+
+        private static bool isRecording = false;
+        private static JObject recordingJson = new JObject();
 
         private void PostHeatMapHandler(Vector3 localPoint)
         {
@@ -326,12 +345,30 @@ namespace Microsoft.MixedReality.Toolkit.Input
 
         private void PutFirebase(int[,] heatMapData)
         {
+            // 既存のJSONデータをシリアライズ
             string json = JsonConvert.SerializeObject(heatMapData);
-            Debug.Log(json);
-            GetAndProcessFirebaseHttpResponse(json);
+
+            if (isRecording)
+            {
+                // タイムスタンプ付きのデータを追加
+                recordingJson[DateTime.Now.ToString("yyyyMMddHHmmss")] = JToken.Parse(json);
+            }
+            else if (recordingJson.Count > 0)
+            {
+                // レコーディングが終了した場合、蓄積されたJSONデータをタイムスタンプ付きでネストさせる
+
+                // ネストされたJSONデータをログに出力し、Firebaseに送信
+                Debug.Log(recordingJson.ToString());
+                GetAndProcessFirebaseHttpResponse(recordingJson.ToString(), "https://eyegazeheatmap-default-rtdb.asia-southeast1.firebasedatabase.app/logs/" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".json", "PUT");
+
+                recordingJson = new JObject(); // セッションをリセット
+            }
+
+            GetAndProcessFirebaseHttpResponse(json, "https://eyegazeheatmap-default-rtdb.asia-southeast1.firebasedatabase.app/images/image1.json", "PUT");
         }
 
-        public void GetAndProcessFirebaseHttpResponse(string json)
+
+        public void GetAndProcessFirebaseHttpResponse(string json,string path, string method)
         {
             taskFirebase = new Task(async () =>
             {
@@ -339,9 +376,18 @@ namespace Microsoft.MixedReality.Toolkit.Input
 
                 try
                 {
-                    // PutDataAsyncメソッドを一度だけ呼び出し
-                    httpResponse = await PutDataAsync(json);
-                    
+                    switch (method) {
+                        case "PUT":
+                            // PutDataAsyncメソッドを一度だけ呼び出し
+                            httpResponse = await PutDataAsync(json, path);
+                            break;
+                        case "POST":
+                            // PutDataAsyncメソッドを一度だけ呼び出し
+                            httpResponse = await PostDataAsync(json, path);
+                            break;
+                    }
+
+
                     // 応答の処理（ログ出力など）
                     if (httpResponse.IsSuccessStatusCode)
                     {
@@ -357,12 +403,12 @@ namespace Microsoft.MixedReality.Toolkit.Input
             taskFirebase.Start();
         }
 
-        private async Task<HttpResponseMessage> PutDataAsync(string json)
+        private async Task<HttpResponseMessage> PutDataAsync(string json, string path)
         {
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             httpClientHandler.AllowAutoRedirect = true;
 
-            var firebasePath = "https://eyegazeheatmap-default-rtdb.asia-southeast1.firebasedatabase.app/images/image1.json";
+            var firebasePath = path;
 
             using (HttpClient httpClient = new HttpClient(httpClientHandler, true))
             {
@@ -381,6 +427,31 @@ namespace Microsoft.MixedReality.Toolkit.Input
                 return response;
             }
         }
+        private async Task<HttpResponseMessage> PostDataAsync(string json, string path)
+        {
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            httpClientHandler.AllowAutoRedirect = true;
+
+            var firebasePath = path;
+
+            using (HttpClient httpClient = new HttpClient(httpClientHandler, true))
+            {
+                httpClient.BaseAddress = new Uri(firebasePath);
+                httpClient.Timeout = TimeSpan.FromSeconds(60);
+
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, firebasePath)
+                {
+                    Content = content
+                };
+
+                HttpResponseMessage response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+                response.EnsureSuccessStatusCode();
+
+                return response;
+            }
+        }
+
 
         protected override void OnDisable()
         {
