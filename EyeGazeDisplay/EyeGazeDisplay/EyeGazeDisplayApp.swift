@@ -8,7 +8,6 @@
 import SwiftUI
 import Foundation
 
-// 生成プログラムを使用して新しいデータを取得
 
 @main
 struct EyeGazeDisplayApp: App {
@@ -17,7 +16,7 @@ struct EyeGazeDisplayApp: App {
 
     var body: some Scene {
         WindowGroup {
-            StartView() // "Textbook"はAssets.xcassetsに追加したイメージの名前になります
+            StartView()
         }
     }
 }

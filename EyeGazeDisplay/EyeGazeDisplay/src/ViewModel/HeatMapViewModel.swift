@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 import Combine
-import FirebaseDatabase
 
 class HeatMapViewModel: ObservableObject {
     @Published var heatMap: HeatmapData?
