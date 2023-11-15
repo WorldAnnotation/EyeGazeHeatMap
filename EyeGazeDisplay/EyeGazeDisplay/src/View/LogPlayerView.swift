@@ -1,54 +1,102 @@
-//
-//  LogPlayer.swift
-//  EyeGazeDisplay
-//
-//  Created by 河口欣仁 on 2023/11/14.
-//
-
-import Foundation
 import SwiftUI
+import Combine
 
 struct LogPlayerView: View {
     @StateObject var viewModel = LogPlayerViewModel()
     @State private var selectedLogIndex: Int? = 0
-    var image = Image("TextBook")
+    @State private var currentHeatMapIndex = 0
+    @State private var isPlaying = false // Play/Pause state
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
         NavigationSplitView {
-            // ログのリストを表示するメニューバー
+            // Display the log list
             if let logList = viewModel.logList {
-                List(logList.indices, selection: $selectedLogIndex) { index in
-                    Text(logList[index]).tag(index)
+                List(selection: $selectedLogIndex) {
+                    ForEach(logList.indices, id: \.self) { index in
+                        Text(logList[index]).tag(index)
+                    }
                 }
             } else {
-                // ログリストがロードされていない場合
-                Text("ログリストをロード中...")
+                Text("Loading log list...")
             }
         } detail: {
-            // 選択されたログの詳細ビュー
-            if let index = selectedLogIndex, let logList = viewModel.logList {
-                LogDetailView(log: logList[index], image: image)
+            // Display the selected log detail
+            if let index = selectedLogIndex, let logList = viewModel.logList, let heatMaps = viewModel.log, !heatMaps.isEmpty {
+                VStack {
+                    // Display HeatMapView
+                    HeatMapView(heatmapData: heatMaps[currentHeatMapIndex])
+                        .onReceive(timer) { _ in
+                            if isPlaying {
+                                currentHeatMapIndex = (currentHeatMapIndex + 1) % heatMaps.count
+                            }
+                        }
+                    HStack{
+                        Text("Selected Log: \(logList[index])")
+                        
+                        // Slider to manually control the heatmap frame
+                        Slider(value: $currentHeatMapIndex.doubleValue, in: 0...Double(heatMaps.count - 1), step: 1)
+                            .padding()
+                            .onChange(of: currentHeatMapIndex) { newIndex, _ in
+                                isPlaying = false // Stop playing when manually controlling the slider
+                            }
+                        
+                        // Player Controls
+                        playerControls
+                    }
+                }
             } else {
-                Text("ログを選択してください")
+                Text("Please select a log")
             }
         }
         .onAppear {
             viewModel.getLogList()
         }
+        .onChange(of: selectedLogIndex) { newIndex, _ in
+            // newIndexがnilの場合、0をデフォルト値として使用
+            if let logTitle = viewModel.logList?[selectedLogIndex ?? -1] {
+                print(logTitle)
+                viewModel.getSpecificLog(with: logTitle)
+                isPlaying = false // Stop playing when a new log is selected
+            }
+        }
+    }
+
+    // Player controls view
+    private var playerControls: some View {
+        HStack {
+            Button(action: {
+                isPlaying = false
+                currentHeatMapIndex = max(currentHeatMapIndex - 1, 0)
+            }) {
+                Image(systemName: "backward.fill")
+            }
+            .padding()
+
+            Button(action: {
+                isPlaying.toggle()
+            }) {
+                Image(systemName: isPlaying ? "pause.fill" : "play.fill")
+            }
+            .padding()
+
+            Button(action: {
+                isPlaying = false
+                currentHeatMapIndex = min(currentHeatMapIndex + 1, viewModel.log?.count ?? 0)
+            }) {
+                Image(systemName: "forward.fill")
+            }
+            .padding()
+        }
     }
 }
 
-struct LogDetailView: View {
-    var log: String
-    var image: Image
-
-    var body: some View {
-        VStack {
-            Text(log)
-            image
-                .resizable()
-                .scaledToFit()
-                .frame(width: (420 * 2.1), height: (297 * 2.125))
-        }
+// Helper extension to bind Int with Slider
+private extension Binding where Value == Int {
+    var doubleValue: Binding<Double> {
+        Binding<Double>(
+            get: { Double(self.wrappedValue) },
+            set: { self.wrappedValue = Int($0) }
+        )
     }
 }
