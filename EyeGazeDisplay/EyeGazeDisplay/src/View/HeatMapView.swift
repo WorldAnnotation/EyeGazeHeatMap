@@ -9,16 +9,46 @@ import SwiftUI
 
 struct HeatMapView: View {
     var heatmapData: HeatmapData
+    var isVisibilityList: [Bool]?
     var a4Image = Image("TextBook")
-    
 
     var body: some View {
         ZStack {
-            a4Image
-                .resizable()
-                .scaledToFit()
-                .frame(width: (420 * 2.116), height: (297 * 2.125))
-            
+            VStack(spacing: 0) {
+                HStack(spacing: 0) {
+                    // cube2
+                    Rectangle()
+                        .frame(width: 275, height: 100)
+                        .foregroundColor(isVisibilityList?.indices.contains(1) ?? false && isVisibilityList?[1] ?? false ? .blue : .white)
+                        .padding(0)
+
+                    Spacer()
+
+                    // cube1
+                    Rectangle()
+                        .frame(width: 275, height: 100)
+                        .foregroundColor(isVisibilityList?.indices.contains(0) ?? false && isVisibilityList?[0] ?? false ? .blue : .white)
+                        .padding(0)
+                }
+
+                a4Image
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 420 * 1.5, height: 297 * 1.5)
+                    .clipped()
+
+                HStack(spacing: 0) {
+                    Spacer()
+
+                    // cube3
+                    Rectangle()
+                        .frame(width: 275, height: 100)
+                        .foregroundColor(isVisibilityList?.indices.contains(2) ?? false && isVisibilityList?[2] ?? false ? .blue : .white)
+                        .padding(0)
+                }
+            }
+
+
             // Display the heatmap
             VStack(spacing: 0) {
                 ForEach(0..<heatmapData.rows, id: \.self) { row in
@@ -35,7 +65,8 @@ struct HeatMapView: View {
                 }
             }
         }
-        Spacer()
+        .edgesIgnoringSafeArea(.all)
+
     }
     
     func colorForValue(_ value: Double) -> Color {

@@ -8,7 +8,7 @@ struct LiveView: View {
 
             // Using HeatMapView with the heatmap data from the viewModel
             if let heatMapData = viewModel.heatMap {
-                HeatMapView(heatmapData: heatMapData)
+                HeatMapView(heatmapData: heatMapData, isVisibilityList: viewModel.isVisibilityList)
             } else {
                 Text("Loading heatmap data...")
             }
