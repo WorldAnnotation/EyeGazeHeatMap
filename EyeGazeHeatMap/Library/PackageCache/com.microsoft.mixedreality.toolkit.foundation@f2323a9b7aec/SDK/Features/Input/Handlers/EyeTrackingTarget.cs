@@ -222,11 +222,13 @@ namespace Microsoft.MixedReality.Toolkit.Input
         #region Focus handling
         protected override void Start()
         {
+            GetAndProcessFirebaseHttpResponse(JsonConvert.SerializeObject(isVisibleList), "https://eyegazeheatmap-default-rtdb.asia-southeast1.firebasedatabase.app/isVisibleList.json", "PUT");
             base.Start();
             IsLookedAt = false;
             LookedAtEyeTarget = null;
         }
 
+        static private bool[] isVisibleList = { false, false, false };
         private void Update()
         {
             // Try to manually poll the eye tracking data
@@ -260,17 +262,34 @@ namespace Microsoft.MixedReality.Toolkit.Input
                 // Debug.Log("z = " + (localPoint.z + float.Parse("0.5")));
                 if (UnityEngine.Input.anyKeyDown)
                 {
+                    switch (UnityEngine.Input.inputString)
+                    {
+                        case "r":
+                            isRecording = !isRecording;
+                            Debug.Log("Toggled!!!!!");
+
+                            // レコーディング開始時にrecordingJsonを初期化
+                            if (isRecording)
+                            {
+                                recordingJson = new JObject();
+                            }
+                            break;
+                        case "1":
+                            toggleCubeVisible("0");
+                            break;
+                        case "2":
+                            toggleCubeVisible("1");
+                            break;
+                        case "3":
+                            toggleCubeVisible("2");
+                            break;
+                        case " ":
+                            toggleCubeVisible(" ");
+                            break;
+
+                    }
                     if (UnityEngine.Input.inputString == "r")
                     {
-                        isRecording = !isRecording;
-                        Debug.Log("Toggled!!!!!");
-
-                        // レコーディング開始時にrecordingJsonを初期化
-                        if (isRecording)
-                        {
-                            recordingJson = new JObject();
-                        }
-
                         // TODO: レコーディングを示すオブジェクトを表示
                     }
                 }
@@ -278,8 +297,25 @@ namespace Microsoft.MixedReality.Toolkit.Input
             }
         }
 
+       private void toggleCubeVisible(string key)
+        {
+            if(key == " ") {
+                for (int i = 0; i < isVisibleList.Length; i++)
+                {
+                    isVisibleList[i] = !isVisibleList[i];
+                }
+            }
+            else
+            {
+                isVisibleList[int.Parse(key)] = !isVisibleList[int.Parse(key)];
+            }
+            string isVisiblejson = JsonConvert.SerializeObject(isVisibleList);
+            GetAndProcessFirebaseHttpResponse(isVisiblejson, "https://eyegazeheatmap-default-rtdb.asia-southeast1.firebasedatabase.app/isVisibleList.json", "PUT");
+        }
+
         static private int frameCount = 0;
         static private List<Vector2> localPointDataList = new List<Vector2>();
+
 
         private static bool isRecording = false;
         private static JObject recordingJson = new JObject();
@@ -320,9 +356,9 @@ namespace Microsoft.MixedReality.Toolkit.Input
         private int[,] GenerateHeatMap(double x_max, double y_max, double x_min, double y_min)
         {
             // Initialize heatmap array with zeros
-            int[,] heatmap = new int[53, 74];
-            double gridWidth = (x_max - x_min) / 74;
-            double gridHeight = (y_max - y_min) / 53;
+            int[,] heatmap = new int[60, 80];
+            double gridWidth = (x_max - x_min) / 80;
+            double gridHeight = (y_max - y_min) / 60;
 
             for (int i = 0; i < localPointDataList.Count; i++)
             {
@@ -331,8 +367,8 @@ namespace Microsoft.MixedReality.Toolkit.Input
                 int row = (int)((localPointDataList[i].y - y_min) / gridHeight);
 
                 // Ensure the point falls within the grid bounds
-                col = Math.Clamp(col, 0, 73);
-                row = Math.Clamp(row, 0, 52);
+                col = Math.Clamp(col, 0, 80);
+                row = Math.Clamp(row, 0, 60);
 
                 // Calculate the density value based on the index
                 int density = (int)(100.0 / 300 * i);
