@@ -25,7 +25,7 @@ struct LogPlayerView: View {
             if let index = selectedLogIndex, let logList = viewModel.logList, let heatMaps = viewModel.log, !heatMaps.isEmpty {
                 VStack {
                     // Display HeatMapView
-                    HeatMapView(heatmapData: heatMaps[currentHeatMapIndex])
+                    HeatMapView(heatmapData: heatMaps[currentHeatMapIndex], isVisibilityList: viewModel.isVisilityList?[currentHeatMapIndex])
                         .onReceive(timer) { _ in
                             if isPlaying {
                                 currentHeatMapIndex = (currentHeatMapIndex + 1) % heatMaps.count
@@ -38,7 +38,7 @@ struct LogPlayerView: View {
                         Slider(value: $currentHeatMapIndex.doubleValue, in: 0...Double(heatMaps.count - 1), step: 1)
                             .padding()
                             .onChange(of: currentHeatMapIndex) { newIndex, _ in
-                                isPlaying = false // Stop playing when manually controlling the slider
+                                isPlaying = true // Stop playing when manually controlling the slider
                             }
                         
                         // Player Controls
@@ -57,7 +57,7 @@ struct LogPlayerView: View {
             if let logTitle = viewModel.logList?[selectedLogIndex ?? -1] {
                 print(logTitle)
                 viewModel.getSpecificLog(with: logTitle)
-                isPlaying = false // Stop playing when a new log is selected
+                isPlaying = true // Stop playing when a new log is selected
             }
         }
     }
