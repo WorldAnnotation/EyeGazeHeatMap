@@ -8,13 +8,14 @@
 import SwiftUI
 import Foundation
 
+
 @main
 struct EyeGazeDisplayApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
     var body: some Scene {
         WindowGroup {
-            HeatMapView() 
+            StartView()
         }
     }
 }
