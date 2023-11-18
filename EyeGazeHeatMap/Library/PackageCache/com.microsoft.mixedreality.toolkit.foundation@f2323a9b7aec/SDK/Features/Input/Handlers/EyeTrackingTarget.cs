@@ -228,7 +228,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
             LookedAtEyeTarget = null;
         }
 
-        static private bool[] isVisibleList = { false, false, false };
+        static private bool[] isVisibleList = { true, true, true };
         private void Update()
         {
             // Try to manually poll the eye tracking data
@@ -386,22 +386,25 @@ namespace Microsoft.MixedReality.Toolkit.Input
 
             if (isRecording)
             {
-                // タイムスタンプ付きのデータを追加
-                recordingJson[DateTime.Now.ToString("yyyyMMddHHmmss")] = JToken.Parse(json);
+                // 新しい構造に合わせてJSONデータを更新
+                string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
+                recordingJson[timestamp] = new JObject();
+                recordingJson[timestamp]["log"] = JToken.Parse(json);
+                recordingJson[timestamp]["isCubeVisibility"] = JToken.FromObject(isVisibleList);
             }
             else if (recordingJson.Count > 0)
             {
-                // レコーディングが終了した場合、蓄積されたJSONデータをタイムスタンプ付きでネストさせる
-
-                // ネストされたJSONデータをログに出力し、Firebaseに送信
+                // レコーディングが終了した場合、蓄積されたJSONデータをFirebaseに送信
                 Debug.Log(recordingJson.ToString());
                 GetAndProcessFirebaseHttpResponse(recordingJson.ToString(), "https://eyegazeheatmap-default-rtdb.asia-southeast1.firebasedatabase.app/logs/" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".json", "PUT");
 
                 recordingJson = new JObject(); // セッションをリセット
             }
 
+            // 常に最新のheatmapデータを送信
             GetAndProcessFirebaseHttpResponse(json, "https://eyegazeheatmap-default-rtdb.asia-southeast1.firebasedatabase.app/images/image1.json", "PUT");
         }
+
 
 
         public void GetAndProcessFirebaseHttpResponse(string json,string path, string method)
