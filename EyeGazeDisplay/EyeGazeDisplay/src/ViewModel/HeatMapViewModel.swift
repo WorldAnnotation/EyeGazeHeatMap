@@ -8,13 +8,15 @@
 import Foundation
 import SwiftUI
 import Combine
-import FirebaseDatabase
 
 class HeatMapViewModel: ObservableObject {
     @Published var heatMap: HeatmapData?
+    @Published var isVisibilityList: [Bool]?
 
     private var dbManager: DatabaseManager
     private var timerSubscription: AnyCancellable?
+    private var visibilitytimerSubscription: AnyCancellable?
+
 
     init() {
         dbManager = DatabaseManager()
@@ -25,7 +27,30 @@ class HeatMapViewModel: ObservableObject {
         timerSubscription = Timer.publish(every: 1, on: .main, in: .common).autoconnect().sink { [weak self] _ in
             self?.fetchData()
         }
+        visibilitytimerSubscription = Timer.publish(every: 1, on: .main, in: .common).autoconnect().sink { [weak self] _ in
+            self?.fetchVisibilityData()
+        }
     }
+    
+    private func fetchVisibilityData() {
+        dbManager.fetchData(from: "isVisibleList") { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+
+                switch result {
+                case .success(let fetchedData):
+                    if let visibilityData = fetchedData as? [Bool] {
+                        self.isVisibilityList = visibilityData
+                    } else {
+                        print("Type mismatch: expected a Bool from fetched data.")
+                    }
+                case .failure(let error):
+                    print("Error fetching data: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+
 
     private func fetchData() {
         dbManager.fetchData(from: "images/image1") { [weak self] result in

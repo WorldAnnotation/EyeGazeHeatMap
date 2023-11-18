@@ -9,19 +9,23 @@
 /* Begin PBXBuildFile section */
 		A955E8642AEB9F2800BC59A6 /* HeatMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A955E8632AEB9F2800BC59A6 /* HeatMapView.swift */; };
 		A955E8662AEB9F3B00BC59A6 /* HeatmapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A955E8652AEB9F3B00BC59A6 /* HeatmapData.swift */; };
-		A955E8692AEB9F7600BC59A6 /* TextBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = A955E8682AEB9F7600BC59A6 /* TextBook.swift */; };
 		A955E86C2AEBA03500BC59A6 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A955E86B2AEBA03500BC59A6 /* FirebaseManager.swift */; };
 		A955E86E2AEBA05100BC59A6 /* HeatMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A955E86D2AEBA05100BC59A6 /* HeatMapViewModel.swift */; };
-		A96E5A572AFB23EF006686DA /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = A96E5A562AFB23EF006686DA /* FirebaseAnalytics */; };
-		A96E5A592AFB23EF006686DA /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = A96E5A582AFB23EF006686DA /* FirebaseDatabase */; };
+		A96358572AFEFA4E00067CF6 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A96358562AFEFA4E00067CF6 /* FirebaseAuth */; };
+		A96358592AFEFA5400067CF6 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = A96358582AFEFA5400067CF6 /* FirebaseDatabase */; };
+		A963585B2AFEFA5400067CF6 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A963585A2AFEFA5400067CF6 /* FirebaseDatabaseSwift */; };
 		A9900EA42AEB7F1D00970719 /* EyeGazeDisplayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9900EA32AEB7F1D00970719 /* EyeGazeDisplayApp.swift */; };
 		A9900EA82AEB7F2000970719 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9900EA72AEB7F2000970719 /* Assets.xcassets */; };
 		A9900EAC2AEB7F2000970719 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9900EAB2AEB7F2000970719 /* Preview Assets.xcassets */; };
 		A9900EB62AEB7F2000970719 /* EyeGazeDisplayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9900EB52AEB7F2000970719 /* EyeGazeDisplayTests.swift */; };
 		A9900EC02AEB7F2000970719 /* EyeGazeDisplayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9900EBF2AEB7F2000970719 /* EyeGazeDisplayUITests.swift */; };
 		A9900EC22AEB7F2000970719 /* EyeGazeDisplayUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9900EC12AEB7F2000970719 /* EyeGazeDisplayUITestsLaunchTests.swift */; };
+		A9B6B6E32B04D2EB00AD32E3 /* LiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B6B6E22B04D2EB00AD32E3 /* LiveView.swift */; };
 		A9BB59B02AECE431005399B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BB59AF2AECE431005399B6 /* AppDelegate.swift */; };
 		A9D23D662AFB80F4005B34CF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9D23D652AFB80F4005B34CF /* GoogleService-Info.plist */; };
+		A9FE1F582B02F05A00377539 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FE1F572B02F05A00377539 /* StartView.swift */; };
+		A9FE1F5A2B02F06700377539 /* LogPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FE1F592B02F06700377539 /* LogPlayerView.swift */; };
+		A9FE1F5C2B0488B800377539 /* LogPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FE1F5B2B0488B800377539 /* LogPlayerViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +48,6 @@
 /* Begin PBXFileReference section */
 		A955E8632AEB9F2800BC59A6 /* HeatMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatMapView.swift; sourceTree = "<group>"; };
 		A955E8652AEB9F3B00BC59A6 /* HeatmapData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatmapData.swift; sourceTree = "<group>"; };
-		A955E8682AEB9F7600BC59A6 /* TextBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBook.swift; sourceTree = "<group>"; };
 		A955E86B2AEBA03500BC59A6 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		A955E86D2AEBA05100BC59A6 /* HeatMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatMapViewModel.swift; sourceTree = "<group>"; };
 		A9900EA02AEB7F1D00970719 /* EyeGazeDisplay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EyeGazeDisplay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,8 +60,12 @@
 		A9900EBB2AEB7F2000970719 /* EyeGazeDisplayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EyeGazeDisplayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9900EBF2AEB7F2000970719 /* EyeGazeDisplayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeGazeDisplayUITests.swift; sourceTree = "<group>"; };
 		A9900EC12AEB7F2000970719 /* EyeGazeDisplayUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeGazeDisplayUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A9B6B6E22B04D2EB00AD32E3 /* LiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveView.swift; sourceTree = "<group>"; };
 		A9BB59AF2AECE431005399B6 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = EyeGazeDisplay/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		A9D23D652AFB80F4005B34CF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A9FE1F572B02F05A00377539 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		A9FE1F592B02F06700377539 /* LogPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogPlayerView.swift; sourceTree = "<group>"; };
+		A9FE1F5B2B0488B800377539 /* LogPlayerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogPlayerViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +73,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A96E5A592AFB23EF006686DA /* FirebaseDatabase in Frameworks */,
-				A96E5A572AFB23EF006686DA /* FirebaseAnalytics in Frameworks */,
+				A963585B2AFEFA5400067CF6 /* FirebaseDatabaseSwift in Frameworks */,
+				A96358592AFEFA5400067CF6 /* FirebaseDatabase in Frameworks */,
+				A96358572AFEFA4E00067CF6 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +110,7 @@
 		A955E85D2AEB9DC200BC59A6 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				A9FE1F5B2B0488B800377539 /* LogPlayerViewModel.swift */,
 				A955E86D2AEBA05100BC59A6 /* HeatMapViewModel.swift */,
 			);
 			path = ViewModel;
@@ -111,7 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				A955E8652AEB9F3B00BC59A6 /* HeatmapData.swift */,
-				A955E8682AEB9F7600BC59A6 /* TextBook.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -120,6 +128,9 @@
 			isa = PBXGroup;
 			children = (
 				A955E8632AEB9F2800BC59A6 /* HeatMapView.swift */,
+				A9FE1F572B02F05A00377539 /* StartView.swift */,
+				A9FE1F592B02F06700377539 /* LogPlayerView.swift */,
+				A9B6B6E22B04D2EB00AD32E3 /* LiveView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -216,8 +227,9 @@
 			);
 			name = EyeGazeDisplay;
 			packageProductDependencies = (
-				A96E5A562AFB23EF006686DA /* FirebaseAnalytics */,
-				A96E5A582AFB23EF006686DA /* FirebaseDatabase */,
+				A96358562AFEFA4E00067CF6 /* FirebaseAuth */,
+				A96358582AFEFA5400067CF6 /* FirebaseDatabase */,
+				A963585A2AFEFA5400067CF6 /* FirebaseDatabaseSwift */,
 			);
 			productName = EyeGazeDisplay;
 			productReference = A9900EA02AEB7F1D00970719 /* EyeGazeDisplay.app */;
@@ -292,7 +304,7 @@
 			);
 			mainGroup = A9900E972AEB7F1D00970719;
 			packageReferences = (
-				A96E5A552AFB23D9006686DA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				A96358552AFEF9EA00067CF6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = A9900EA12AEB7F1D00970719 /* Products */;
 			projectDirPath = "";
@@ -338,9 +350,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9900EA42AEB7F1D00970719 /* EyeGazeDisplayApp.swift in Sources */,
-				A955E8692AEB9F7600BC59A6 /* TextBook.swift in Sources */,
 				A955E86C2AEBA03500BC59A6 /* FirebaseManager.swift in Sources */,
+				A9FE1F582B02F05A00377539 /* StartView.swift in Sources */,
+				A9FE1F5A2B02F06700377539 /* LogPlayerView.swift in Sources */,
 				A955E86E2AEBA05100BC59A6 /* HeatMapViewModel.swift in Sources */,
+				A9FE1F5C2B0488B800377539 /* LogPlayerViewModel.swift in Sources */,
+				A9B6B6E32B04D2EB00AD32E3 /* LiveView.swift in Sources */,
 				A9BB59B02AECE431005399B6 /* AppDelegate.swift in Sources */,
 				A955E8642AEB9F2800BC59A6 /* HeatMapView.swift in Sources */,
 				A955E8662AEB9F3B00BC59A6 /* HeatmapData.swift in Sources */,
@@ -702,7 +717,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A96E5A552AFB23D9006686DA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		A96358552AFEF9EA00067CF6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -713,15 +728,20 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A96E5A562AFB23EF006686DA /* FirebaseAnalytics */ = {
+		A96358562AFEFA4E00067CF6 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A96E5A552AFB23D9006686DA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
+			package = A96358552AFEF9EA00067CF6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
 		};
-		A96E5A582AFB23EF006686DA /* FirebaseDatabase */ = {
+		A96358582AFEFA5400067CF6 /* FirebaseDatabase */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A96E5A552AFB23D9006686DA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = A96358552AFEF9EA00067CF6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDatabase;
+		};
+		A963585A2AFEFA5400067CF6 /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A96358552AFEF9EA00067CF6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabaseSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

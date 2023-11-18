@@ -32,4 +32,18 @@ class DatabaseManager {
             completion(.failure(error))
         }
     }
+    
+    func fetchItemKeys(from path: String, completion: @escaping (Result<[String], Error>) -> Void) {
+        dbRef.child(path).observe(.value, with: { snapshot in
+            guard let value = snapshot.value as? [String: Any] else {
+                completion(.failure(NSError(domain: "Firebase", code: 0, userInfo: [NSLocalizedDescriptionKey: "No data available at the given path."])))
+                return
+            }
+
+            let keys = Array(value.keys)
+            completion(.success(keys))
+        }) { error in
+            completion(.failure(error))
+        }
+    }
 }
