@@ -883,7 +883,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1091468906}
   - component: {fileID: 1091468905}
-  - component: {fileID: 1091468907}
   m_Layer: 0
   m_Name: Material Contlloer
   m_TagString: Untagged
@@ -921,18 +920,6 @@ Transform:
   m_Father: {fileID: 1730087807}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1091468907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1091468904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4681978422146674d84d4e02fd058f12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1349589447
 GameObject:
   m_ObjectHideFlags: 0
@@ -1609,85 +1596,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dda585645b750464aa071722e8cabbbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1867748825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1867748816}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1e6657bab90ac149872e5361b42ea62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectAction:
-    id: 0
-    description: None
-    axisConstraint: 0
-  voiceSelect: []
-  dwellTimeInSec: 0.8
-  onLookAtStart:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1867748826}
-        m_TargetAssemblyTypeName: Microsoft.MixedReality.Toolkit.UI.Interactable,
-          Microsoft.MixedReality.Toolkit.SDK
-        m_MethodName: set_HasFocus
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  whileLookingAtTarget:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1867748826}
-        m_TargetAssemblyTypeName: Microsoft.MixedReality.Toolkit.UI.Interactable,
-          Microsoft.MixedReality.Toolkit.SDK
-        m_MethodName: set_HasFocus
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onLookAway:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1867748826}
-        m_TargetAssemblyTypeName: Microsoft.MixedReality.Toolkit.UI.Interactable,
-          Microsoft.MixedReality.Toolkit.SDK
-        m_MethodName: set_HasFocus
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDwell:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelected:
-    m_PersistentCalls:
-      m_Calls: []
-  onTapDown:
-    m_PersistentCalls:
-      m_Calls: []
-  onTapUp:
-    m_PersistentCalls:
-      m_Calls: []
-  eyeCursorSnapToTargetCenter: 0
 --- !u!114 &1867748826
 MonoBehaviour:
   m_ObjectHideFlags: 0
