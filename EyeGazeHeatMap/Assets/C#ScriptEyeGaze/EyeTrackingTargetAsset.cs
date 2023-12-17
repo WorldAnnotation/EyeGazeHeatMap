@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,20 @@ using Microsoft.MixedReality.Toolkit.Input;
 
 namespace Microsoft.MixedReality.Toolkit.Input
 {
+
+    public struct FetchedData
+    {
+        public int x;
+        public int y;
+        public double value;
+
+        public FetchedData(int x, int y, double value)
+        {
+            this.x = x;
+            this.y = y;
+            this.value = value;
+        }
+    }
 
     /// <summary>
     /// A game object with the "EyeTrackingTarget" script attached reacts to being looked at independent of other available inputs.
@@ -158,7 +173,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
         }
 
         /// <summary>
-        /// Returns true if the user looks at the target or more specifically when the eye gaze ray intersects 
+        /// Returns true if the user looks at the target or more specifically when the eye gaze ray intersects
         /// with the target's bounding box.
         /// </summary>
         public bool IsLookedAt { get; private set; }
@@ -171,7 +186,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
         private DateTime lookAtStartTime;
 
         /// <summary>
-        /// Duration in milliseconds to indicate that if more time than this passes without new eye tracking data, then timeout. 
+        /// Duration in milliseconds to indicate that if more time than this passes without new eye tracking data, then timeout.
         /// </summary>
         private float EyeTrackingTimeoutInMilliseconds = 200;
 
@@ -181,7 +196,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
         private static DateTime lastEyeSignalUpdateTimeFromET = DateTime.MinValue;
 
         /// <summary>
-        /// The time stamp from the eye tracker has its own time frame, which makes it difficult to compare to local times. 
+        /// The time stamp from the eye tracker has its own time frame, which makes it difficult to compare to local times.
         /// </summary>
         private static DateTime lastEyeSignalUpdateTimeLocal = DateTime.MinValue;
 
@@ -198,7 +213,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
             CoreServices.InputSystem.EyeGazeProvider.IsEyeTrackingEnabledAndValid) ? CoreServices.InputSystem.EyeGazeProvider.GazeTarget : null;
 
         /// <summary>
-        /// The point in space where the eye gaze hit. 
+        /// The point in space where the eye gaze hit.
         /// set to the origin if the EyeGazeProvider is not currently enabled
         /// </summary>
         public static Vector3 LookedAtPoint =>
@@ -256,7 +271,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
                     OnEyeFocusStay();
                 }
 
-                var localPoint = transform.InverseTransformPoint(LookedAtPoint); //ƒ[ƒ‹ƒhÀ•W‚Æ‚µ‚Äæ“¾‚µ‚½LookAtPoint‚ğTargetPlaneã‚Ì‘Š‘ÎˆÊ’u(localpoint)‚Æ‚µ‚ÄŠi”[
+                var localPoint = transform.InverseTransformPoint(LookedAtPoint); //ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½Wï¿½Æ‚ï¿½ï¿½Äæ“¾ï¿½ï¿½ï¿½ï¿½LookAtPointï¿½ï¿½TargetPlaneï¿½ï¿½Ì‘ï¿½ï¿½ÎˆÊ’u(localpoint)ï¿½Æ‚ï¿½ï¿½ÄŠiï¿½[
                 Debug.Log("x = " + (localPoint.x + float.Parse("0.5")));
                 Debug.Log("y = " + localPoint.y);
                 Debug.Log("z = " + (localPoint.z + float.Parse("0.5")));
@@ -268,7 +283,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
                             isRecording = !isRecording;
                             Debug.Log("Toggled!!!!!");
 
-                            // ƒŒƒR[ƒfƒBƒ“ƒOŠJn‚ÉrecordingJson‚ğ‰Šú‰»
+                            // ï¿½ï¿½ï¿½Rï¿½[ï¿½fï¿½Bï¿½ï¿½ï¿½Oï¿½Jï¿½nï¿½ï¿½ï¿½ï¿½recordingJsonï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                             if (isRecording)
                             {
                                 recordingJson = new JObject();
@@ -290,7 +305,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
                     }
                     if (UnityEngine.Input.inputString == "r")
                     {
-                        // TODO: ƒŒƒR[ƒfƒBƒ“ƒO‚ğ¦‚·ƒIƒuƒWƒFƒNƒg‚ğ•\¦
+                        // TODO: ï¿½ï¿½ï¿½Rï¿½[ï¿½fï¿½Bï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½\ï¿½ï¿½
                     }
                 }
                 PostHeatMapHandler(localPoint);
@@ -321,12 +336,13 @@ namespace Microsoft.MixedReality.Toolkit.Input
         private static bool isRecording = false;
         private static JObject recordingJson = new JObject();
 
+
         private void PostHeatMapHandler(Vector3 localPoint)
         {
             frameCount++;
 
             // Add the local point to heat map data list if frameCount is not 60.
-            // This ensures that every 60 frames (which is every second at 60fps), 
+            // This ensures that every 60 frames (which is every second at 60fps),
             // you do not add the new point, allowing for the heatmap processing.
             float x = localPoint.x + float.Parse("0.5");
             float z = localPoint.z + float.Parse("0.5");
@@ -344,7 +360,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
                     localPointDataList.RemoveRange(0, localPointDataList.Count - 300);
 
                     // Generate the heatmap data.
-                    int[,] heatMapData = GenerateHeatMap(1, 1, 0, 0); // Placeholder for heatmap generation logic.
+                    List<FetchedData> heatMapData = GenerateHeatMap(1, 1, 0, 0); // Placeholder for heatmap generation logic.
                     // Post the heatmap data to Firebase.s
                     PutFirebase(heatMapData);
 
@@ -354,57 +370,54 @@ namespace Microsoft.MixedReality.Toolkit.Input
         }
 
 
-        private int[,] GenerateHeatMap(double x_max, double y_max, double x_min, double y_min)
+        private List<FetchedData> GenerateHeatMap(double x_max, double y_max, double x_min, double y_min)
         {
-            // Initialize heatmap array with zeros
-            int[,] heatmap = new int[60, 80];
+            List<FetchedData> heatmapData = new List<FetchedData>();
             double gridWidth = (x_max - x_min) / 80;
             double gridHeight = (y_max - y_min) / 60;
 
             for (int i = 0; i < localPointDataList.Count; i++)
             {
-                // Calculate the corresponding grid cell for the point
                 int col = (int)((localPointDataList[i].x - x_min) / gridWidth);
                 int row = (int)((localPointDataList[i].y - y_min) / gridHeight);
+                col = Math.Clamp(col, 0, 79);
+                row = Math.Clamp(row, 0, 59);
 
-                // Ensure the point falls within the grid bounds
-                col = Math.Clamp(col, 0, 80);
-                row = Math.Clamp(row, 0, 60);
-
-                // Calculate the density value based on the index
                 int density = (int)(100.0 / 300 * i);
-
-                // Set the density value in the heatmap
-                heatmap[row, col] = density;
+                if (density > 0)
+                {
+                    heatmapData.Add(new FetchedData { x = col, y = row, value = density });
+                }
             }
-            return heatmap;
+            return heatmapData;
         }
 
-        private void PutFirebase(int[,] heatMapData)
+
+        private void PutFirebase(List<FetchedData> heatMapData)
         {
-            // Šù‘¶‚ÌJSONƒf[ƒ^‚ğƒVƒŠƒAƒ‰ƒCƒY
+            // ãƒ’ãƒ¼ãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚’JSONå½¢å¼ã«ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚º
             string json = JsonConvert.SerializeObject(heatMapData);
 
             if (isRecording)
             {
-                // V‚µ‚¢\‘¢‚É‡‚í‚¹‚ÄJSONƒf[ƒ^‚ğXV
+                // ãƒ¬ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ä¸­ã®å‡¦ç†
                 string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
                 recordingJson[timestamp] = new JObject();
-                recordingJson[timestamp]["log"] = JToken.Parse(json);
+                recordingJson[timestamp]["heatmap"] = JToken.Parse(json);
                 recordingJson[timestamp]["isCubeVisibility"] = JToken.FromObject(isVisibleList);
             }
             else if (recordingJson.Count > 0)
             {
-                // ƒŒƒR[ƒfƒBƒ“ƒO‚ªI—¹‚µ‚½ê‡A’~Ï‚³‚ê‚½JSONƒf[ƒ^‚ğFirebase‚É‘—M
+                // ãƒ¬ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°çµ‚äº†å¾Œã®å‡¦ç†
                 Debug.Log(recordingJson.ToString());
                 GetAndProcessFirebaseHttpResponse(recordingJson.ToString(), "https://eyegazeheatmap-default-rtdb.asia-southeast1.firebasedatabase.app/logs/" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".json", "PUT");
-
-                recordingJson = new JObject(); // ƒZƒbƒVƒ‡ƒ“‚ğƒŠƒZƒbƒg
+                recordingJson = new JObject(); // ãƒ¬ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°JSONã‚’ãƒªã‚»ãƒƒãƒˆ
             }
 
-            // í‚ÉÅV‚Ìheatmapƒf[ƒ^‚ğ‘—M
-            GetAndProcessFirebaseHttpResponse(json, "https://eyegazeheatmap-default-rtdb.asia-southeast1.firebasedatabase.app/images/image1.json", "PUT");
+            // ãƒ’ãƒ¼ãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚’Firebaseã«é€ä¿¡
+            GetAndProcessFirebaseHttpResponse(json, "https://eyegazeheatmap-default-rtdb.asia-southeast1.firebasedatabase.app/images/image2.json", "PUT");
         }
+
 
 
 
@@ -419,17 +432,17 @@ namespace Microsoft.MixedReality.Toolkit.Input
                     switch (method)
                     {
                         case "PUT":
-                            // PutDataAsyncƒƒ\ƒbƒh‚ğˆê“x‚¾‚¯ŒÄ‚Ño‚µ
+                            // PutDataAsyncï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½Ä‚Ñoï¿½ï¿½
                             httpResponse = await PutDataAsync(json, path);
                             break;
                         case "POST":
-                            // PutDataAsyncƒƒ\ƒbƒh‚ğˆê“x‚¾‚¯ŒÄ‚Ño‚µ
+                            // PutDataAsyncï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½Ä‚Ñoï¿½ï¿½
                             httpResponse = await PostDataAsync(json, path);
                             break;
                     }
 
 
-                    // ‰“š‚Ìˆ—iƒƒOo—Í‚È‚Çj
+                    // ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½Oï¿½oï¿½Í‚È‚Çj
                     if (httpResponse.IsSuccessStatusCode)
                     {
                         Debug.Log("Data successfully updated.");
