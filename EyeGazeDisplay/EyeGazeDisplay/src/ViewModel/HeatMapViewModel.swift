@@ -57,6 +57,7 @@ class HeatMapViewModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let fetchedData):
+                    print(fetchedData);
                     // ここでフェッチされたデータをgenerateHeatMapに渡す
                     //self?.generateHeatMap(with: fetchedData)
                     self?.updateHeatMap(with: fetchedData)
@@ -68,23 +69,24 @@ class HeatMapViewModel: ObservableObject {
     }
 
     private func updateHeatMap(with fetchedData: Any) {
-        guard let fetchedArray = fetchedData as? [FetchedData] else {
+        guard let fetchedArray = fetchedData as? [[String: Int]] else {
             print("Invalid json structure")
             return
         }
 
-        var updatedHeatMapData = Array(repeating: Array(repeating: 0.0, count: 80), count:60)
+        var updatedHeatMapData = Array(repeating: Array(repeating: 0, count: 80), count:60)
 
-        for fetched in fetchedArray {
-            let x = fetched.x
-            let y = fetched.y
-
-            if x >= 0 && x < 80 && y > 0 && y < 60 {
-                updatedHeatMapData[y][x] = fetched.value
+        for fetchedDict in fetchedArray {
+            if let x = fetchedDict["x"], let y = fetchedDict["y"], let value = fetchedDict["value"] {
+                if x >= 0 && x < 80 && y >= 0 && y < 60 {
+                    updatedHeatMapData[y][x] = value
+                }
             }
         }
+
         heatMap = HeatmapData(rows: 60, columns: 80, data: updatedHeatMapData)
     }
+
 
     // オブジェクトが解放されたときにタイマーを停止
     deinit {

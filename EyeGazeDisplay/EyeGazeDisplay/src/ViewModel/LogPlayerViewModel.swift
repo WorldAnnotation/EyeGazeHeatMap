@@ -45,7 +45,7 @@ class LogPlayerViewModel: ObservableObject{
 
                         for (_, value) in logDataDict.sorted(by: { $0.key < $1.key }) {
                             if let logEntry = value as? [String: Any],
-                               let logEntries = logEntry["log"] as? [[Double]],
+                               let logEntries = logEntry["log"] as? [[Int]],
                                let cubeVisibility = logEntry["isCubeVisibility"] as? [Bool] {
                                 let rows = logEntries.count
                                 let columns = rows > 0 ? logEntries[0].count : 0

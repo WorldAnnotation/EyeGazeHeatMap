@@ -8,11 +8,11 @@
     struct HeatmapData{
         let rows: Int
         let columns: Int
-        var data: [[Double]]
+        var data: [[Int]]
     }
 
     struct FetchedData {
+        let value: Int
         let x: Int
         let y: Int
-        let value: Double
     }
