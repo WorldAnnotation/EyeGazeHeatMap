@@ -21,6 +21,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 using Microsoft.MixedReality.Toolkit.Input;
+using System.Linq;
 
 namespace Microsoft.MixedReality.Toolkit.Input
 {
@@ -272,9 +273,6 @@ namespace Microsoft.MixedReality.Toolkit.Input
                 }
 
                 var localPoint = transform.InverseTransformPoint(LookedAtPoint); //���[���h���W�Ƃ��Ď擾����LookAtPoint��TargetPlane��̑��Έʒu(localpoint)�Ƃ��Ċi�[
-                Debug.Log("x = " + (localPoint.x + float.Parse("0.5")));
-                Debug.Log("y = " + localPoint.y);
-                Debug.Log("z = " + (localPoint.z + float.Parse("0.5")));
                 if (UnityEngine.Input.anyKeyDown)
                 {
                     switch (UnityEngine.Input.inputString)
@@ -372,25 +370,36 @@ namespace Microsoft.MixedReality.Toolkit.Input
 
         private List<FetchedData> GenerateHeatMap(double x_max, double y_max, double x_min, double y_min)
         {
-            List<FetchedData> heatmapData = new List<FetchedData>();
+            var heatmapData = new Dictionary<Tuple<int, int>, FetchedData>();
             double gridWidth = (x_max - x_min) / 80;
             double gridHeight = (y_max - y_min) / 60;
 
             for (int i = 0; i < localPointDataList.Count; i++)
             {
-                int col = (int)((localPointDataList[i].x - x_min) / gridWidth);
-                int row = (int)((localPointDataList[i].y - y_min) / gridHeight);
-                col = Math.Clamp(col, 0, 79);
-                row = Math.Clamp(row, 0, 59);
+                double adjustedX = localPointDataList[i].x - x_min;
+                double adjustedY = localPointDataList[i].y - y_min;
+                int col = Math.Clamp((int)(adjustedX / gridWidth), 0, 79);
+                int row = Math.Clamp((int)(adjustedY / gridHeight), 0, 59);
 
                 int density = (int)(100.0 / 300 * i);
                 if (density > 0)
                 {
-                    heatmapData.Add(new FetchedData { x = col, y = row, value = density });
+                    var key = Tuple.Create(col, row);
+                    if (heatmapData.ContainsKey(key))
+                    {
+                        var existingData = heatmapData[key];
+                        existingData.value = density; // ここで一時変数の値を変更
+                        heatmapData[key] = existingData; // 変更された値を Dictionary に戻す
+                    }
+                    else
+                    {
+                        heatmapData.Add(key, new FetchedData { x = col, y = row, value = density });
+                    }
                 }
             }
-            return heatmapData;
+            return heatmapData.Values.ToList();
         }
+
 
 
         private void PutFirebase(List<FetchedData> heatMapData)
@@ -413,7 +422,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
                 GetAndProcessFirebaseHttpResponse(recordingJson.ToString(), "https://eyegazeheatmap-default-rtdb.asia-southeast1.firebasedatabase.app/logs/" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".json", "PUT");
                 recordingJson = new JObject(); // レコーディングJSONをリセット
             }
-
+            Debug.Log(json);
             // ヒートマップデータをFirebaseに送信
             GetAndProcessFirebaseHttpResponse(json, "https://eyegazeheatmap-default-rtdb.asia-southeast1.firebasedatabase.app/images/image2.json", "PUT");
         }
@@ -476,6 +485,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
                 };
 
                 HttpResponseMessage response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+                Debug.Log(response);
                 response.EnsureSuccessStatusCode();
 
                 return response;
