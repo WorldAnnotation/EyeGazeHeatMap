@@ -1,8 +1,9 @@
-﻿// Copyright (c) Microsoft Corporation.
+// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,22 +21,37 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 using Microsoft.MixedReality.Toolkit.Input;
+using System.Linq;
 
 namespace Microsoft.MixedReality.Toolkit.Input
 {
+
+    public struct FetchedData
+    {
+        public int x;
+        public int y;
+        public double value;
+
+        public FetchedData(int x, int y, double value)
+        {
+            this.x = x;
+            this.y = y;
+            this.value = value;
+        }
+    }
 
     /// <summary>
     /// A game object with the "EyeTrackingTarget" script attached reacts to being looked at independent of other available inputs.
     /// </summary>
     [AddComponentMenu("Scripts/MRTK/SDK/EyeTrackingTarget")]
-    public class EyeTrackingTarget : InputSystemGlobalHandlerListener, IMixedRealityPointerHandler, IMixedRealitySpeechHandler
+    public class EyeTrackingTargetAsset : InputSystemGlobalHandlerListener, IMixedRealityPointerHandler, IMixedRealitySpeechHandler
     {
         CancellationTokenSource cancellationTokenSource;
         HttpResponseMessage httpResponse;
         StreamReader contentStreamReader;
         Stream contentStream;
         Task taskFirebase;
-        
+
         [Tooltip("Select action that are specific to when the target is looked at.")]
         [SerializeField]
         private MixedRealityInputAction selectAction = MixedRealityInputAction.None;
@@ -158,7 +174,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
         }
 
         /// <summary>
-        /// Returns true if the user looks at the target or more specifically when the eye gaze ray intersects 
+        /// Returns true if the user looks at the target or more specifically when the eye gaze ray intersects
         /// with the target's bounding box.
         /// </summary>
         public bool IsLookedAt { get; private set; }
@@ -171,7 +187,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
         private DateTime lookAtStartTime;
 
         /// <summary>
-        /// Duration in milliseconds to indicate that if more time than this passes without new eye tracking data, then timeout. 
+        /// Duration in milliseconds to indicate that if more time than this passes without new eye tracking data, then timeout.
         /// </summary>
         private float EyeTrackingTimeoutInMilliseconds = 200;
 
@@ -181,7 +197,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
         private static DateTime lastEyeSignalUpdateTimeFromET = DateTime.MinValue;
 
         /// <summary>
-        /// The time stamp from the eye tracker has its own time frame, which makes it difficult to compare to local times. 
+        /// The time stamp from the eye tracker has its own time frame, which makes it difficult to compare to local times.
         /// </summary>
         private static DateTime lastEyeSignalUpdateTimeLocal = DateTime.MinValue;
 
@@ -198,7 +214,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
             CoreServices.InputSystem.EyeGazeProvider.IsEyeTrackingEnabledAndValid) ? CoreServices.InputSystem.EyeGazeProvider.GazeTarget : null;
 
         /// <summary>
-        /// The point in space where the eye gaze hit. 
+        /// The point in space where the eye gaze hit.
         /// set to the origin if the EyeGazeProvider is not currently enabled
         /// </summary>
         public static Vector3 LookedAtPoint =>
@@ -256,10 +272,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
                     OnEyeFocusStay();
                 }
 
-                var localPoint = transform.InverseTransformPoint(LookedAtPoint); //ワールド座標として取得したLookAtPointをTargetPlane上の相対位置(localpoint)として格納
-                // Debug.Log("x = " + (localPoint.x + float.Parse("0.5")));
-                // Debug.Log("y = " + localPoint.y);
-                // Debug.Log("z = " + (localPoint.z + float.Parse("0.5")));
+                var localPoint = transform.InverseTransformPoint(LookedAtPoint); //���[���h���W�Ƃ��Ď擾����LookAtPoint��TargetPlane��̑��Έʒu(localpoint)�Ƃ��Ċi�[
                 if (UnityEngine.Input.anyKeyDown)
                 {
                     switch (UnityEngine.Input.inputString)
@@ -268,7 +281,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
                             isRecording = !isRecording;
                             Debug.Log("Toggled!!!!!");
 
-                            // レコーディング開始時にrecordingJsonを初期化
+                            // ���R�[�f�B���O�J�n����recordingJson��������
                             if (isRecording)
                             {
                                 recordingJson = new JObject();
@@ -290,16 +303,17 @@ namespace Microsoft.MixedReality.Toolkit.Input
                     }
                     if (UnityEngine.Input.inputString == "r")
                     {
-                        // TODO: レコーディングを示すオブジェクトを表示
+                        // TODO: ���R�[�f�B���O�������I�u�W�F�N�g��\��
                     }
                 }
                 PostHeatMapHandler(localPoint);
             }
         }
 
-       private void toggleCubeVisible(string key)
+        private void toggleCubeVisible(string key)
         {
-            if(key == " ") {
+            if (key == " ")
+            {
                 for (int i = 0; i < isVisibleList.Length; i++)
                 {
                     isVisibleList[i] = !isVisibleList[i];
@@ -320,17 +334,18 @@ namespace Microsoft.MixedReality.Toolkit.Input
         private static bool isRecording = false;
         private static JObject recordingJson = new JObject();
 
+
         private void PostHeatMapHandler(Vector3 localPoint)
         {
             frameCount++;
 
             // Add the local point to heat map data list if frameCount is not 60.
-            // This ensures that every 60 frames (which is every second at 60fps), 
+            // This ensures that every 60 frames (which is every second at 60fps),
             // you do not add the new point, allowing for the heatmap processing.
             float x = localPoint.x + float.Parse("0.5");
             float z = localPoint.z + float.Parse("0.5");
             localPointDataList.Add(new Vector2(x, z));
-            
+
             // If frameCount has reached 60 (1 second), process the heatmap data.
             if (frameCount >= 60)
             {
@@ -343,7 +358,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
                     localPointDataList.RemoveRange(0, localPointDataList.Count - 300);
 
                     // Generate the heatmap data.
-                    int[,] heatMapData = GenerateHeatMap(1, 1, 0, 0); // Placeholder for heatmap generation logic.
+                    List<FetchedData> heatMapData = GenerateHeatMap(1, 1, 0, 0); // Placeholder for heatmap generation logic.
                     // Post the heatmap data to Firebase.s
                     PutFirebase(heatMapData);
 
@@ -353,61 +368,69 @@ namespace Microsoft.MixedReality.Toolkit.Input
         }
 
 
-        private int[,] GenerateHeatMap(double x_max, double y_max, double x_min, double y_min)
+        private List<FetchedData> GenerateHeatMap(double x_max, double y_max, double x_min, double y_min)
         {
-            // Initialize heatmap array with zeros
-            int[,] heatmap = new int[60, 80];
+            var heatmapData = new Dictionary<Tuple<int, int>, FetchedData>();
             double gridWidth = (x_max - x_min) / 80;
             double gridHeight = (y_max - y_min) / 60;
 
             for (int i = 0; i < localPointDataList.Count; i++)
             {
-                // Calculate the corresponding grid cell for the point
-                int col = (int)((localPointDataList[i].x - x_min) / gridWidth);
-                int row = (int)((localPointDataList[i].y - y_min) / gridHeight);
+                double adjustedX = localPointDataList[i].x - x_min;
+                double adjustedY = localPointDataList[i].y - y_min;
+                int col = Math.Clamp((int)(adjustedX / gridWidth), 0, 79);
+                int row = Math.Clamp((int)(adjustedY / gridHeight), 0, 59);
 
-                // Ensure the point falls within the grid bounds
-                col = Math.Clamp(col, 0, 80);
-                row = Math.Clamp(row, 0, 60);
-
-                // Calculate the density value based on the index
                 int density = (int)(100.0 / 300 * i);
-
-                // Set the density value in the heatmap
-                heatmap[row, col] = density;
+                if (density > 0)
+                {
+                    var key = Tuple.Create(col, row);
+                    if (heatmapData.ContainsKey(key))
+                    {
+                        var existingData = heatmapData[key];
+                        existingData.value = density; // ここで一時変数の値を変更
+                        heatmapData[key] = existingData; // 変更された値を Dictionary に戻す
+                    }
+                    else
+                    {
+                        heatmapData.Add(key, new FetchedData { x = col, y = row, value = density });
+                    }
+                }
             }
-            return heatmap;
+            return heatmapData.Values.ToList();
         }
 
-        private void PutFirebase(int[,] heatMapData)
+
+
+        private void PutFirebase(List<FetchedData> heatMapData)
         {
-            // 既存のJSONデータをシリアライズ
+            // ヒートマップデータをJSON形式にシリアライズ
             string json = JsonConvert.SerializeObject(heatMapData);
 
             if (isRecording)
             {
-                // 新しい構造に合わせてJSONデータを更新
+                // レコーディング中の処理
                 string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
                 recordingJson[timestamp] = new JObject();
-                recordingJson[timestamp]["log"] = JToken.Parse(json);
+                recordingJson[timestamp]["heatmap"] = JToken.Parse(json);
                 recordingJson[timestamp]["isCubeVisibility"] = JToken.FromObject(isVisibleList);
             }
             else if (recordingJson.Count > 0)
             {
-                // レコーディングが終了した場合、蓄積されたJSONデータをFirebaseに送信
+                // レコーディング終了後の処理
                 Debug.Log(recordingJson.ToString());
                 GetAndProcessFirebaseHttpResponse(recordingJson.ToString(), "https://eyegazeheatmap-default-rtdb.asia-southeast1.firebasedatabase.app/logs/" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".json", "PUT");
-
-                recordingJson = new JObject(); // セッションをリセット
+                recordingJson = new JObject(); // レコーディングJSONをリセット
             }
-
-            // 常に最新のheatmapデータを送信
-            GetAndProcessFirebaseHttpResponse(json, "https://eyegazeheatmap-default-rtdb.asia-southeast1.firebasedatabase.app/images/image1.json", "PUT");
+            Debug.Log(json);
+            // ヒートマップデータをFirebaseに送信
+            GetAndProcessFirebaseHttpResponse(json, "https://eyegazeheatmap-default-rtdb.asia-southeast1.firebasedatabase.app/images/image2.json", "PUT");
         }
 
 
 
-        public void GetAndProcessFirebaseHttpResponse(string json,string path, string method)
+
+        public void GetAndProcessFirebaseHttpResponse(string json, string path, string method)
         {
             taskFirebase = new Task(async () =>
             {
@@ -415,19 +438,20 @@ namespace Microsoft.MixedReality.Toolkit.Input
 
                 try
                 {
-                    switch (method) {
+                    switch (method)
+                    {
                         case "PUT":
-                            // PutDataAsyncメソッドを一度だけ呼び出し
+                            // PutDataAsync���\�b�h����x�����Ăяo��
                             httpResponse = await PutDataAsync(json, path);
                             break;
                         case "POST":
-                            // PutDataAsyncメソッドを一度だけ呼び出し
+                            // PutDataAsync���\�b�h����x�����Ăяo��
                             httpResponse = await PostDataAsync(json, path);
                             break;
                     }
 
 
-                    // 応答の処理（ログ出力など）
+                    // �����̏����i���O�o�͂Ȃǁj
                     if (httpResponse.IsSuccessStatusCode)
                     {
                         Debug.Log("Data successfully updated.");
@@ -461,6 +485,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
                 };
 
                 HttpResponseMessage response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+                Debug.Log(response);
                 response.EnsureSuccessStatusCode();
 
                 return response;
@@ -562,7 +587,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
             OnLookAway?.Invoke();
         }
 
-#endregion
+        #endregion
 
         #region IMixedRealityPointerHandler
         void IMixedRealityPointerHandler.OnPointerUp(MixedRealityPointerEventData eventData) { }
